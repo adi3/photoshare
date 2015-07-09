@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Project 8: <%= yield :title %></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application", :type => "text/javascript" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="header">
+
+		<div class="container">
+			<div class="left">
+				<a href="/"><%= image_tag "logo.png", alt: "Home" %></a>
+			</div>
+
+        	<div class="right">
+        		<p class="log">
+        			<% if session[:user_id].nil? %>
+        				<a href="/users/login">Login</a> | <a href="/users/new">Register</a>
+        			<% else %>
+        				Hi <%= session[:user_name] %>! <a href="/users/logout">Logout</a>
+        			<% end %>
+        		</p>
+
+                <a href="https://github.com/adi3?tab=repositories"><%= image_tag "github.png", alt: "GitHub" %></a>
+                <a href="https://www.linkedin.com/in/adisin/"><%= image_tag "linkedin.png", alt: "LinkedIn" %></a>
+				<a href="https://www.facebook.com/adisin3"><%= image_tag "facebook.png", alt: "Facebook" %></a>
+				<a href="https://twitter.com/adisin3"><%= image_tag "twitter.png", alt: "Twitter" %></a>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container">
+		<%= yield %>
+	</div>
+</body>
+</html>
+

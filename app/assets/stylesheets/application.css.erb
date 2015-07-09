@@ -1,0 +1,295 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+body {
+	color: #333;
+	background-color: #f5f5f5;
+	font-size: 13px;
+	font-family: Tahoma, sans-serif;
+	line-height: 1.5em;
+	padding-bottom: 50px;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	font-weight: bold;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.header {
+	height: 85px;
+	margin-bottom: 30px;
+	background: transparent url(<%= image_path "bg-head.png" %>) repeat-x top left;
+}
+
+.container {
+	width: 70%;
+	margin: auto;
+}
+
+.header .left {
+	float: left;
+	padding-top: 20px;
+}
+
+.header .right {
+	float: right;
+}
+
+.header .right > a {
+	margin: 5px;
+}
+
+.header .right a img:hover {
+	background-color: #A30000;
+	border-radius: 20px;
+}
+
+.header .right .log {
+	margin: 10px;
+	text-align: right;
+	font-weight: bold;
+}
+
+.users ul {
+	list-style-type: circle;
+}
+
+.users ul li {
+	margin: 3px 0;
+}
+
+.info {
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.info p {
+	margin: 0;
+}
+
+.pic {
+	text-align: center;
+}
+
+.pic img {
+	box-shadow: 0 0 8px #333;
+	padding: 6px;
+	max-width: 100%;
+}
+
+.tinytext {
+	font-style: italic;
+	font-size: 11px;
+	margin: 3px;
+	text-align: center;
+}
+
+.gallery-elem {
+	padding: 20px 25px 5px;
+}
+
+.gallery .comments .comment {
+	box-shadow: 0 0 6px #888;
+	margin: 10px 0;
+	padding: 5px;
+}
+
+.gallery .no-comment {
+	font-style: italic;
+}
+
+.btn a {
+	text-decoration: none;
+	color: whitesmoke;
+	padding: 5px 8px;
+	border-radius: 4px;
+}
+
+.green-btn {
+	text-align: right;
+	margin-top: 15px;
+}
+
+.red-btn {
+	float: right;
+}
+	
+.green-btn a {
+	background-color: #008200;
+}
+
+.green-btn a:hover {
+	background-color: #006200;
+}
+
+.red-btn a {
+	background-color: #820000;
+}
+
+.red-btn a:hover {
+	background-color: #620000;
+}
+
+.login {
+	width: 247px;
+	margin: auto;
+}
+
+.register {
+	width: 315px;
+	margin: auto;
+}
+
+.login .red-btn {
+	margin-right: 4px;
+	margin-top: 19px;
+}
+
+.register .green-btn {
+	padding: 5px 8px;
+}
+
+.login form,
+.register form {
+	width: 100%;
+}
+
+.login form input,
+.register form input {
+	border: none;
+	box-shadow: 0 0 5px;
+	border-radius: 2px;
+}
+
+.login td,
+.register td {
+	padding: 5px 10px;
+}
+
+form {
+	width: 70%;
+	margin: auto;
+}
+
+form label {
+	font-weight: bold;
+}
+
+form textarea {
+	width: 100%;
+	height: 50px;
+	resize: none;
+}
+
+form input[type=submit] {
+	float: right;
+	border: 0;
+	font-weight: bold;
+	background-color: #008200;
+	color: whitesmoke;
+	padding: 5px 16px;
+	border-radius: 4px;
+	margin-top: 15px;
+}
+
+form input[type=submit]:hover {
+	cursor: pointer;
+	background-color: #006200;
+}
+
+.upload form {
+	text-align: center;
+}
+
+.upload form input[type=file] {
+	font-weight: bold;
+	margin: 5%;
+}
+
+.upload form input[type=submit] {
+	float: none;
+}
+
+.error {
+	text-align: center;
+	font-weight: bold;
+	color: #820000;
+}
+
+.notice {
+	text-align: center;
+	font-weight: bold;
+	color: #008200;
+}
+
+.tag form {
+	margin-top: 30px;
+}
+
+.tag form input[type=submit] {
+	margin-top: 0;
+}
+
+#parent{
+	position: relative;
+	margin: auto;
+}
+
+#feedback {
+	border: 1px solid #008200;
+	position: absolute;
+	display: none;
+}
+
+.tag-box {
+	border: 1px solid whitesmoke;
+	position: absolute;
+}
+
+.tag-name {
+    background: whitesmoke;
+	color: #333;
+	padding: 2px;
+	position: absolute;
+	top: -13px;
+	left: -1px;
+	font-weight: bold;
+	border-radius: 2px;
+	white-space: nowrap;
+	visibility: hidden;
+}
+
+#search-box {
+	margin-left: 25px;
+}
+
+#search-results img {
+	width: 80px;
+	box-shadow: 0 0 8px #333;
+	padding: 3px;
+	margin: 10px 5px;
+}
+
+#search-results {
+	border: 1px dotted;
+	text-align: center;
+	margin-top: 20px;
+}

@@ -1,0 +1,62 @@
+<% content_for :title, "Tag #{@photo.user.full_name}'s Photo" %>
+
+<div class="tag">
+	<% flash.each do |name, msg| -%>
+    	<%= content_tag :div, msg, class: name %>
+    	<br />
+	<% end %>
+
+	<span><%= link_to "< Back", "/photos/index/#{@photo.user.id}" %></span>
+
+	<div class="info">
+		<p>Comment on <%= "Tag #{@photo.user.first_name} #{@photo.user.last_name}'s Photo" %></p>
+	</div>
+
+	<br />
+	<div id="parent">
+		<div class="pic">
+			<div id="feedback"></div>
+			<%= image_tag "/images/#{@photo.file_name}" %>
+		</div>
+
+		<% @photo.tags.each do |t| %>
+			<div class="tag-box" style="<%= "left: #{t.left}px; top: #{t.top}px; width: #{t.width}px; height: #{t.height}px;" %>" onmouseover="this.children[0].style.visibility = 'visible'" onmouseout="this.children[0].style.visibility = 'hidden'" >
+				<span class="tag-name"><%= t.user.full_name %></span>
+			</div>
+    	<% end %>
+
+    	<div>
+			<p class="tinytext"><%= @photo.date_time.getlocal.strftime("Posted on %m-%d-%Y at %I:%M %p") %></p>
+		</div>
+	</div>
+
+	<%= form_for :tag, :url => {:action => :post_tag, :id => @photo.id} do |f| %>
+		<div>
+			<%= f.hidden_field :left %>
+	        <%= f.hidden_field :top %>
+	        <%= f.hidden_field :width %>
+	        <%= f.hidden_field :height %>
+	        <%= f.collection_select :user_id, User.all, :id, :full_name, :include_blank => true %>
+			<%= f.submit "Tag" %>
+		</div>
+	<% end %>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+	window.onload = setTimeout(initTagger, 1000);
+
+	function initTagger() {
+		setParentSize();
+		new Tagger("parent", "feedback", "tag_left", "tag_top", "tag_width", "tag_height");
+	}
+
+	// sets parent div's dimensions equal to image so tagger never goes out of bounds
+	function setParentSize() {
+	  var imgs = document.getElementsByTagName('img');
+	  var parent = document.getElementById('parent');
+	  parent.style.width = (imgs[imgs.length - 1].width + 6) + "px";
+	  parent.style.height = (imgs[imgs.length - 1].height + 6) + "px";
+	}
+//]]>	
+</script>

@@ -1,0 +1,29 @@
+<% content_for :title, "Upload Photo" %>
+
+<div class="upload">
+
+	<% if session[:user_id].nil? %>
+		<span><%= link_to "< Back", "/users/index" %></span>
+		<p class="error">You must be logged in to upload photos!</p>
+	<% else %>
+
+		<span><%= link_to "< Back", "/photos/index/#{session[:user_id]}" %></span>
+
+		<% flash.each do |name, msg| -%>
+			<%= content_tag :div, msg, class: name %>
+			<br />
+		<% end %>
+
+		<div class="info">
+			<p>Add Photos to Your Album</p>
+		</div>
+
+		<%= form_for :photo, method: :post, url: {action: :create} do |f| %>
+			<div>
+			   <%= f.file_field :photo %>
+			   <br />
+			   <%= f.submit "Upload" %>
+			</div>
+		<% end %>
+	<% end %>
+</div>

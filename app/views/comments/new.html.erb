@@ -1,0 +1,45 @@
+<% content_for :title, "New Comment" %>
+
+<div class="comment">
+
+	<% if @photo.nil? %>
+		<span><%= link_to "< Back", "/users/index" %></span>
+	<% end %>
+
+	<% flash.each do |name, msg| -%>
+    	<%= content_tag :div, msg, class: name %>
+    	<br />
+	<% end %>
+
+	<% if not @photo.nil? %>
+
+		<span><%= link_to "< Back", "/photos/index/#{@photo.user.id}" %></span>
+
+		<div class="info">
+			<p>Comment on <%= "#{@photo.user.first_name} #{@photo.user.last_name}'s Photo" %></p>
+		</div>
+
+		<br />
+		<div class="pic">
+			<%= image_tag "/images/#{@photo.file_name}" %>
+			<p class="tinytext">
+				<%= @photo.date_time.getlocal.strftime("Posted on %m-%d-%Y at %I:%M %p") %>
+			</p>
+		</div>
+
+		<% if session[:user_id].nil? %>
+			<p class="error">You must be logged in to comment on photos!</p>
+		<% else %>
+			<%= form_for :comment, method: :post, url: {action: :create, :id => @photo.id} do |f| %>
+			   	<div>
+			   		<%= f.label :comment, "Your Comment:" %>
+			   		<br />
+				   	<%= f.text_area :comment, rows: "4", cols: "80" %>
+				   	<br />
+				   	<%= f.submit "Post" %>
+			   	</div>
+			<% end %>
+		<% end %>
+
+	<% end %>
+</div>

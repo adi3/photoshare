@@ -1,0 +1,20 @@
+<% if !@tag.nil? %>
+<% if @tag.errors.any? %>
+	<% @tag.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+<% end %>
+<% end %>
+<div id="<%= id %>" class="tag_form">
+<%= form_for(:tag, :url => {:action => action}) do |f| %>
+   <%= f.label label1 %>
+   <%  users_array = User.all.map { |user| [user.first_name + " " + user.last_name, user.id]} %>
+   <%= f.select(:user_id, users_array) %>
+   <%= f.hidden_field name1, :id=>id1 %>
+   <%= f.hidden_field name2, :id=>id2 %>
+   <%= f.hidden_field name3, :id=>id3 %>
+   <%= f.hidden_field name4, :id=>id4 %>
+   <%= f.hidden_field hidden5, :value=>hidden5_value %>
+   <%= f.submit "Submit" %>
+<% end %>
+</div><!--tag_form-->

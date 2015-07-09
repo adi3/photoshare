@@ -1,0 +1,11 @@
+<% if @p_result.nil? or @p_result.empty? %>
+	<p><em>No photos matching this query...</em></p>
+<% else %>
+	<% @p_result.each do |p| %>
+		<span>
+			<a href="<%= "/photos/index/#{p.user_id}/##{p.id}" %>">
+				<img src="<%= "/images/#{p.file_name}" %>" />
+			</a>
+		</span>
+	<% end %>
+<% end %>

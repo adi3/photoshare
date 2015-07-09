@@ -1,0 +1,31 @@
+<% content_for :title, "Login" %>
+
+<div class="login">
+	<% flash.each do |name, msg| %>
+	      <%= content_tag :div, msg, class: name %>
+	      <br />
+	<% end %>
+
+	<%= form_for :user, :url => {action: :post_login} do |f| %> 
+
+		<table cellspacing="0">
+			<tr>
+				<td><%= f.label :login, "Login" %></td>
+	   			<td><%= f.text_field :login %></td>
+	   		</tr>
+			
+			<tr>
+	   			<td><%= f.label :password, "Password" %></td>
+	   			<td><%= f.password_field :password %></td>
+	   		</tr>
+	   	</table>
+	   	
+	   	<div>
+	   		<%= f.submit "Login", class: "btn green-btn" %>
+	   	</div>
+
+		<div class="btn red-btn">
+			<a href="/users/new">Register</a>
+		</div>
+	<% end %>
+</div>

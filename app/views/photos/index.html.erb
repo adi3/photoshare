@@ -1,0 +1,89 @@
+<% if (@user == nil) %>
+	<% content_for :title, "Invalid User ID" %>
+	<div class="gallery">
+		<span><%= link_to "< Users", "/users/index" %></span>
+
+		<br />
+		<div class="info">
+			<p><%= "User with ID #{params[:id]} does not exist!" %></p>
+		</div>
+	</div>
+<% else %>
+	<% content_for :title, "Photo Gallery of #{@user.first_name} #{@user.last_name}" %>
+
+	<div class="gallery">
+		<span><%= link_to "< Users", "/users/index" %></span>
+
+		<% if @user.id.eql? session[:user_id] %>
+			<span class="btn red-btn"><%= link_to "New Photo!", "/photos/new" %></span>
+		<% end %>
+
+		<% flash.each do |name, msg| -%>
+	    	<%= content_tag :div, msg, class: name %>
+	    	<br />
+		<% end %>
+
+		<div class="info">
+			<p><%= "Photo Gallery of #{@user.first_name} #{@user.last_name}" %></p>
+		</div>
+
+		<% if @photos.empty? %>
+			<div class="gallery-elem">No photos found for this user.</div>
+		<% else %>
+			<% @photos.each do |p| %>
+
+				<a name="<%= p.id %>">
+					<div class="gallery-elem">
+						<div class="pic">
+							<%= image_tag "/images/#{p.file_name}" %>
+							<p class="tinytext">
+								<%= p.date_time.getlocal.strftime("Posted on %m-%d-%Y at %I:%M %p") %>
+							</p>
+
+							<p class="tinytext">
+								<%= link_to pluralize(p.tags.length, 'Tag'), "/photos/tag/#{p.id}" %>
+							</p>
+
+							<p class="btn red-btn">
+								<%= link_to "Tag Users", "/photos/tag/#{p.id}" %>
+							</p>
+						</div>
+
+						<div class="comments">
+							<p><b>Comments:</b></p>
+							<% if p.comments.empty? %>
+								<div class="no-comment">No comments on this one yet!</div>
+							<% else %>
+								<% p.comments.each do |c| %>
+									<div class="comment">
+										<%= c.comment %> -- 
+										<span class="tinytext">
+											<%= link_to "#{c.user.first_name} #{c.user.last_name}", c.user_id.to_s %> 
+												on <%= c.date_time.getlocal.strftime("%m-%d-%Y at %I:%M %p") %>
+										</span>
+									</div>
+								<% end %>
+							<% end %>
+
+							<div class="btn green-btn">
+								<a href="<%= "/comments/new/#{p.id}" %>" >New Comment</a>
+							</div>
+						</div>
+					</div>
+				</a>
+				<hr />
+
+			<% end %>
+		<% end %>
+	</div>
+<% end %>
+
+<script type="text/javascript">
+//<![CDATA[
+   function startTags(form_number, parent_id, feedback_div, x, y, width, height) {
+   	console.log(form_number)
+       document.getElementById(form_number).style.visibility = "visible";
+       new Tagger (parent_id, feedback_div, x, y, width, height); 
+   }
+//]]>
+</script>
