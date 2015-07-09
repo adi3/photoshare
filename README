@@ -1,1 +1,0 @@
-search.js is reusable as it takes in parameters describing where it should expect user input in the page and where it should display the output. It also takes in parameters for the search action that returns the HTML string to be inserted as results. Thus, no divs or Ids are hard-coded into the library, making it reusable on different pages for different actions.
