@@ -9,4 +9,3 @@ A full-fledged Rails implementation of a photo-sharing website.
 * Dynamic JS tagging
 * Universal search
 
-This 
